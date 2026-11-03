@@ -1,0 +1,10 @@
+{
+  "experiment2-full.zip": {
+    "bytes": 32600561,
+    "sha256": "2bcb20ab7e9fb25151cffddc2ecf8a7d64e25d6963e0ca3f2613f15b8b7f9b54"
+  },
+  "ctf.protected.bin": {
+    "bytes": 3164552,
+    "sha256": "8c10a917daee0cc05ce1b3e4f166161bff0047ad2050121642ff86993dafe3bf"
+  }
+}

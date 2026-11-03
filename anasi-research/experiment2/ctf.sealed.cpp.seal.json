@@ -1,0 +1,6 @@
+{
+  "scheme": "SHA-256 fixed-length target sealing",
+  "bytes": 24,
+  "target_digest": "47d2ee4f91603e0a19e7e8b0d8015865f5af8bf9b2efa856d0baf0ac4545d98e",
+  "source_sha256": "9077f7025995b52aee73521917ea8644ae037013beeb798be6c2cad389b7b038"
+}

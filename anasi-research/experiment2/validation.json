@@ -1,0 +1,28 @@
+{
+  "sha256_reference_cases": 268,
+  "adapter_rejection_cases": 3,
+  "differential_cases": 127,
+  "binaries_compared": 3,
+  "failures": 0,
+  "protected_seconds_min": 0.16445562100000188,
+  "protected_seconds_max": 0.38556816599998456,
+  "protected_seconds_mean": 0.2313535316456691,
+  "plaintext_answer_absent": true,
+  "original_target_bytes_absent": true,
+  "tamper_tests": [
+    {
+      "case": "elf_padding",
+      "exit": 174
+    },
+    {
+      "case": "digest",
+      "exit": 174
+    },
+    {
+      "case": "magic",
+      "exit": 174
+    }
+  ],
+  "native_gate_function_count": 38,
+  "binary_sha256": "8c10a917daee0cc05ce1b3e4f166161bff0047ad2050121642ff86993dafe3bf"
+}
