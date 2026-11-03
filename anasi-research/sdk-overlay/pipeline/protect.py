@@ -479,6 +479,16 @@ def apply_guards_step(args, workdir, src_ll):
     """⑥.5 守卫步骤：anti-emu/integrity/churn/opaque 重写 IR（就地），
     deny-attach/churn 拷贝/生成 C 守卫单元到 workdir 供编译链接。
     返回守卫清单。"""
+    if getattr(args, "native_call_gate", None):
+        from native_call_gate import apply as apply_native_call_gate
+        gate_path = os.path.join(workdir, src_ll)
+        roots = [x for x in re.split(r"[,\s]+", args.native_call_gate) if x]
+        with open(gate_path, encoding="utf-8") as f:
+            gated, manifest = apply_native_call_gate(f.read(), roots)
+        with open(gate_path, "w", encoding="utf-8") as f:
+            f.write(gated)
+        with open(os.path.join(workdir, "native_call_gate.json"), "w") as f:
+            json.dump(manifest, f, indent=2)
     g = guards_list(args)
     ir_guards = [x for x in ("anti-emu", "integrity", "churn", "opaque")
                  if x in g]
@@ -963,6 +973,9 @@ def main():
     ap.add_argument("--module-id", default="/w/input.ll",
                     help="transformed.ll 的 ModuleID（引擎为临时 input.ll 路径）")
     ap.add_argument("--function", default="main")
+    ap.add_argument("--native-call-gate", default=None,
+                    help="Opt-in direct-call barrier: comma-separated entry roots; "
+                         "gate their defined native descendants. No nonlocal exits.")
     ap.add_argument("--functions", default=None,
                     help="多函数模式：逗号分隔清单或 @file → 33 函数"
                          " whibo 形态（单 module 多 plans；引擎对齐："
